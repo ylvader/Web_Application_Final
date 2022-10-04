@@ -1,0 +1,98 @@
+body {
+  background: rgb(39, 53, 54);
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.youtubecontent {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+h1 {
+    color: rgb(24, 34, 34);
+    text-align: center;
+    font-family: 'Helvetica';
+}
+
+h2 {
+  font-family: 'Helvetica';
+}
+
+p {
+  text-align: center;
+  font-family: 'Helvetica';
+}
+
+.a {
+  display: block;
+    width: 100px;
+    margin: auto;
+}
+
+.google_button {
+  font-family: 'Georgia';
+  border-radius: 15px;
+}
+
+.google_button:link, .google_button:visited {
+  background-color: #DB4437;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.google_button:hover, .google_button:active {
+  background-color: #0F9D58;
+}
+
+.github_button {
+  font-family: 'Verdana';
+  border-radius: 15px;
+}
+
+.github_button:link, .github_button:visited {
+  background-color: #222428;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.github_button:hover, .github_button:active {
+  background-color: #6e5494;
+  color: #ffffff;
+}
+
+.twitter_button {
+  font-family: 'Lucida Console';
+  border-radius: 15px;
+}
+
+.twitter_button:link, .twitter_button:visited {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.twitter_button:hover, .twitter_button:active {
+  background-color: #657786;
+  color: #ffffff;
+}
