@@ -1,23 +1,23 @@
-// import express
+// Import express
 const express = require('express')
 const router = express.Router() // get router
 
-// create routes
-// will be localhost:3000 when you use just /
+// Create routes
+// localhost:3000/index will render index.ejs
 router.get('/', (req, res, next) => {
     // render our views to index.js file?
     res.render('index')
 })
 
-router.get('/dashboard', (req, res, next) => {
-    // render our views to index.js file?
-    res.render('dashboard')
-})
-
+// Create routes to videos
 router.get('/videos', (req, res, next) => {
-    // render our views to index.js file?
     res.render('videos')
 })
 
-// export information from the file: the router
+// Create routes to RSSfeed
+router.get('/RSSfeed', (req, res, next) => {
+    res.render('RSSfeed')
+})
+
+// Export information from the file
 module.exports = router

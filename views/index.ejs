@@ -1,4 +1,4 @@
-<!-- Index page -->
+<!-- Index page: Shown to physicians and researchers -->
 
  <!DOCTYPE html>
  <html lang="en">
@@ -6,18 +6,57 @@
     <link href="/styles/style.css" rel="stylesheet" type="text/css">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <script src="https://apis.google.com/js/platform.js" async defer></script>
-     <meta name="google-signin-client_id" content="196608064196-f6vrd19frijr63opnp8bp39ivomagm50.apps.googleusercontent.com">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Web Application for PD patients, resarchers and physicans: Index</title>
+
  </head>
  <body>
     <div class="content">
+        <!-- Log out functionality could be implemented in the future -->
+        <a class="logoutButton" href="/">Sign out</a>
+
         <div>
-            <h1>Web Application: Index page</h1>
-            <p>Welcome to the index page!</p>
+            <h1>Web Application</h1>
             
+            <!-- Show the role of the user using a global variable with the username -->
+            <span>Welcome <span id="Rolename"><%= global.userName[0].username %></span>!</span>
+            <br></br>
+
+            <!-- Show data from .csv-files in a table by clicking on a specific data -->
+            <div>
+                <h2>Data for your patients</h2>
+                <h3>Data and files</h3>
+                <p>Click on the buttons to view a table with specific data</p>
+                
+                <list>
+                    <button class="databutton" onclick="showTable('data1')">Data1</button>
+                    <button class="databutton" onclick="showTable('data2')">Data2</button>
+                    <button class="databutton" onclick="showTable('data3')">Data3</button>
+                    <button class="databutton" onclick="showTable('data4')">Data4</button>
+                    <button class="databutton" onclick="showTable('data5')">Data5</button>
+                    <button class="databutton" onclick="showTable('data6')">Data6</button>
+                </list>
+                <br></br>
+
+                <!-- Close the table (hidden when no data is selected) -->
+                <button class="databutton" id="closeTableButton" onclick="closeTable()">Close Table</button>
+                
+                <table class="data-table" id="data-table"></table>
+            </div>
+            
+            <!-- Link to RSS field for the researchers (Need to be fixed). -->
+            <br></br>
+            <div id="RSS_field">
+                <h2>RSS field</h2>
+                <p>View latest news regarding the PD research by clicking on the button below:</p>
+            
+                <a class="my_button" href="./RSSfeed">View RSS field</a>
+                
+            </div>
         </div>
     </div>
+
+    <!-- Script that handles functionality -->
+    <script src="./scripts/index_script.js"></script>
  </body>
  </html>

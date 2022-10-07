@@ -1,135 +1,129 @@
-// passportConfig.js: Configures passport
-// Passport is authentication middleware for Node.js.
-// A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
+// passportConfig.js: Configures Passport, which is an authentication middleware for Node.js.
+// Here using the Passport strategies Google, Github and Facebook
 
-// My Google-information
-/*
-id: '106084874984399345388',
-displayName: 'Y D',
-name: { familyName: 'D', givenName: 'Y' },
-photos: [
-  {
-    value: 'https://lh3.googleusercontent.com/a/ALm5wu1dP3Z6Ewpx4QeEb58qmh5XNAHdGCylXyKcvjMn=s96-c'
-  }
-],*/
-
-//@TODO: Make passwords secure (****) when Github:ing
-// https://www.youtube.com/watch?v=7K9kDrtc4S8
-
+// Imports: Google OAuth20, Github2, Facebook and MySQL
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github2').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 var mysql = require('mysql');
 
+// Connect to the database
 var mysql_con = mysql.createConnection({
   host: "localhost",
-  user: "dbuser",
-  password: "hejsan",
-  database: "pd_db"
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database
 });
 
 mysql_con.connect(function(err) {
     if (err) throw err;
-    console.log("Connecteeed!");
+    console.log("Connected to the database");
   });
 
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// Global variable to keep track of the user's username, which is the role of the user
+global.userName = 0;
 
+// Configure Passport
 module.exports = (passport) => {
+    
+    // Google (Now conntected to Patient2)
+    // Create a new GoogleStrategy
     passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "http://localhost:3000/auth/google/callback"
     },
         async function (accessToken, refreshToken, profile, done) {
-            
-            // console.log("Trying to access google account ", profile);
-
-            // Find user in the database
+            // Find user in the database by comparing the clientID in the database with the Google-ID
            process.nextTick(function() {
-            mysql_con.query("SELECT userID FROM user WHERE clientID = ?", [profile.id], (err, user) => {
+            mysql_con.query("SELECT username FROM user WHERE clientID = ?", [profile.id], (err, user) => {
                 if(err) {
-                    console.log("fis")
+                    console.log("Error in finding user with Google-account")
                     return done(err);
                 }
                 else if(user) { // User exists
-                    console.log(user);
-                    return done(null, user);
-                    console.log("heej")
-
-                    //console.log(user.Role_IDrole)
-                    
-                    /*
-                    // Check which role the user has
-                    mysql_con.query("SELECT roleID FROM role, user where Role_IDrole = roleId AND clientID = ?", [profile.id], (err, roleID) => {
-                    if(err) {
-                        console.log("error")
-                        return done(err);
-                    }
-                    else if(roleID==1) { //User has a Patient-role: Show Youtube videos
-                        console.log(roleID)
-                        console.log("hejhej")
-                        //res.redirect('/login')
-                    }
-                    })
-                    */
+                    console.log("Google user exists");
+                    // Set the username that is retrieved from the database
+                    global.userName = user;
+                    return done(null, user); 
                 }
                 else { // Redirect user
-                    // You don't have a Google account
+                    // User don't have a Google account
                     return done(null);
                 }
              })
-
            })
         }
     ));
 
-    // Twitter
+    // GitHub (Now conntected to Researcher)
+    // Create a new GitHubStrategy
+    passport.use(new GitHubStrategy({
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/github/callback"
+    },
+        async function (accessToken, refreshToken, profile, done) {
+            // Find user in the database by comparing the clientID in the database with the GitHub-ID
+           process.nextTick(function() {
+            mysql_con.query("SELECT username FROM user WHERE clientID = ?", [profile.id], (err, user) => {
+                if(err) {
+                    console.log("Error in finding user with GitHub-account")
+                    return done(err);
+                }
+                else if(user) { // User exists
+                    console.log("GitHub user exists");
+                    // Set the username that is retrieved from the database
+                    global.userName = user;
+                    return done(null, user);
+                }
+                else { // Redirect user
+                    // User don't have a GitHub account
+                    return done(null);
+                }
+             })
+           })
+        }
+    ));
 
-    // Github
+    // Facebook (Now conntected to Doc)
+    passport.use(new FacebookStrategy({
+        clientID: process.env.FACEBOOK_APP_ID,
+        clientSecret: process.env.FACEBOOK_APP_SECRET,
+        callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+        async function (accessToken, refreshToken, profile, done) {
+            // Find user in the database by comparing the clientID in the database with the Facebook-ID
+           process.nextTick(function() {
+            mysql_con.query("SELECT username FROM user WHERE clientID = ?", [profile.id], (err, user) => {
+                if(err) {
+                    console.log("Error in finding user with Facebook-account")
+                    return done(err);
+                }
+                else if(user) { // User exists
+                    console.log("Facebook user exists");
+                    // Set the username that is retrieved from the database
+                    global.userName = user;
+                    return done(null, user);  
+                }
+                else { // Redirect user
+                    // User don't have a Facebook account
+                    return done(null);
+                }
+             })
+           })
+        }
+    ));
 
-    // serializeUser determines which data of the user object should be stored in the session.
-    passport.serializeUser((user,done)=>{
-        console.log("inside serialize");
+    // Serialize the user (store the data of the user object)
+    passport.serializeUser(function (user, done){
+        console.log("Inside serializeUser");
         done(null, user)
     });
 
-    // In deserializeUser that key is matched with the in memory array / database or any data resource.
+    // Deserialize the user (find the data of the user object)
     passport.deserializeUser(function (user, done) {
+        console.log("Inside deserializeUser");
         done(null, user);
     });
 }
-
-/**
- * module.exports = (passport) => {
-    passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/auth/google/callback"
-    },
-        async function (accessToken, refreshToken, profile, done) {
-
-            // console.log("Trying to access google account ", profile);
-
-            // Find user in the database
-            try {
-                let googleUser = await UserModel.findOne({ googleId: profile.id });
-                if (googleUser) {
-                    console.log("Google-User is in the database");
-                    done(null, googleUser);
-                } else {
-                // If the user is not found, create a new google-user (don't want it here)
-                // Should be "You're not connected with a google account"
-                    const newGoogleUser = { 
-                        googleId: profile.id,
-                        name: profile.displayName
-                    };
-                    googleUser = await UserModel.create(newGoogleUser);
-                    console.log("Creating new user with Google authentication");
-                    done(null, googleUser);
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        }
-    ));
- */
-
-

@@ -1,13 +1,11 @@
-// import express
+// Import express
 const express = require('express')
-const router = express.Router() // get router
+const router = express.Router() 
 
-// create routes
-// will be localhost:3000 when you use just /
+// Create routes: localhost:3000 will render login.ejs
 router.get('/', (req, res) => {
-    // render our views to index.js file?
-    res.render('login', { layout: 'login' })
+    res.render('login')
 })
 
-// export information from the file: the router
+// Export information from the file
 module.exports = router

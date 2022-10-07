@@ -1,8 +1,28 @@
+/* Style.css: Styling for the web application */
+
+/* Containers */
 body {
   background: rgb(39, 53, 54);
 }
 
 .content {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+.youtubecontent {
+  max-width: 800px;
+  background: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+div {
   max-width: 500px;
   margin: auto;
   background: white;
@@ -11,35 +31,112 @@ body {
   border-radius: 5px;
 }
 
-.youtubecontent {
-  max-width: 600px;
-  margin: auto;
-  background: white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-}
+/* Text */
 
 h1 {
-    color: rgb(24, 34, 34);
-    text-align: center;
-    font-family: 'Helvetica';
+  color: rgb(24, 34, 34);
+  text-align: center;
+  font-family: 'Helvetica';
 }
 
 h2 {
   font-family: 'Helvetica';
 }
 
-p {
+p, span {
   text-align: center;
   font-family: 'Helvetica';
 }
 
 .a {
   display: block;
-    width: 100px;
-    margin: auto;
+  width: 100px;
+  margin: auto;
 }
+
+/* Tables */
+
+.data-table, th, td {
+  border: 1px solid;
+  text-align: center;
+  font-family: 'Helvetica';
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+/* Buttons */
+
+button {
+  background-color: #4c8eaf;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.databutton {
+  border-radius: 15px;
+}
+
+.databutton:link, .databutton:visited {
+  background-color: #4c8eaf;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.databutton:hover, .databutton:active {
+  background-color: #668878;
+}
+
+.logoutButton:link, .logoutButton:visited {
+  position: absolute;
+  left:2px;
+  top:2px;
+  font-family: 'Helvetica';
+  border-radius: 15px;
+  background-color: rgb(49, 54, 69);
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logoutButton:hover, .logoutButton:active {
+  background-color: rgb(90, 99, 126);
+}
+
+.my_button{
+  font-family: 'Helvetica';
+  border-radius: 15px;
+}
+
+.my_button:link, .my_button:visited {
+  background-color: #353c44;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.my_button:hover, .my_button:active {
+  background-color: #668878;
+}
+
+/* Buttons: Google, Github and Facebook */
 
 .google_button {
   font-family: 'Georgia';
@@ -78,13 +175,13 @@ p {
   color: #ffffff;
 }
 
-.twitter_button {
+.facebook_button {
   font-family: 'Lucida Console';
   border-radius: 15px;
 }
 
-.twitter_button:link, .twitter_button:visited {
-  background-color: #1DA1F2;
+.facebook_button:link, .facebook_button:visited {
+  background-color: #4267B2;
   color: white;
   padding: 14px 25px;
   text-align: center;
@@ -92,7 +189,7 @@ p {
   display: inline-block;
 }
 
-.twitter_button:hover, .twitter_button:active {
-  background-color: #657786;
+.facebook_button:hover, .facebook_button:active {
+  background-color: #898F9C;
   color: #ffffff;
 }

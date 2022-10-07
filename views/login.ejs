@@ -1,6 +1,4 @@
-<!-- Login page
-    in order to have syntax you need to download ejs-in visual studio
- ! and click enter: basic html for you  -->
+<!-- Login page: Authentication using Google/Facebook/GitHub -->
 
  <!DOCTYPE html>
  <html lang="en">
@@ -8,10 +6,8 @@
     <link href="/styles/style.css" rel="stylesheet" type="text/css">
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <script src="https://apis.google.com/js/platform.js" async defer></script>
-     <meta name="google-signin-client_id" content="196608064196-f6vrd19frijr63opnp8bp39ivomagm50.apps.googleusercontent.com">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Web Application for PD patients, resarchers and physicans: Login</title>
+     <title>Web Application for PD patients, resarchers and physicans: Sign in</title>
  </head>
  <body>
     <div class="content">
@@ -23,11 +19,16 @@
         <div>
             <h2>Select authentication method:</h2>
         </div>
+
+        <!-- Authentication using Google/Facebook/GitHub -->
         <a class="google_button" href="/auth/google">Google</a>
         <br></br>
-        <a class="github_button" href="">GitHub</a>
+
+        <a class="github_button" href="/auth/github">GitHub</a>
         <br></br>
-        <a class="twitter_button" href="">Twitter</a>
+        
+        <a class="facebook_button" href="/auth/facebook">Facebook</a>
+
         <br></br>
     </div>
  </body>

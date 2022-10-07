@@ -2,9 +2,9 @@
 const express = require('express')
 const router = express.Router() 
 
-// Create routes: localhost:3000/videos will render videos.ejs
+// Create routes: localhost:3000/RSSfeed will render RSSfeed.ejs
 router.get('/', (req, res, next) => {
-    res.render('videos')
+    res.render('RSSfeed')
 })
 
 // Export information from the file
