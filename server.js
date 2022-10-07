@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 const loginRouter = require('./routes/login')
 const indexRouter = require('./routes/index')
 const videosRouter = require('./routes/videos')
-const RSSFeedRouter = require('./routes/RSSfeed')
+const rssfeedRouter = require('./routes/RSSfeed')
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs')
@@ -70,7 +70,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 // Set up the routes
 app.use('/', loginRouter); // Start page as login
 app.use('/index', indexRouter);
-app.use('/RSSfeed', RSSFeedRouter);
+app.use('/RSSfeed', rssfeedRouter);
 app.use('/videos', videosRouter);
 
 // Make the app listen to port 3000
