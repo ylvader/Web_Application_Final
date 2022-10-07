@@ -69,7 +69,6 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 
 // Set up the routes
 app.use('/', loginRouter); // Start page as login
-//app.use('/auth', usersRouter);
 app.use('/index', indexRouter);
 app.use('/RSSfeed', RSSFeedRouter);
 app.use('/videos', videosRouter);
