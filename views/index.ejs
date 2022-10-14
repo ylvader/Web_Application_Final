@@ -1,62 +1,70 @@
-<!-- Index page: Shown to physicians and researchers -->
+<!-- Index page: Content for physicians, researchers and patients -->
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <link href="/styles/style.css" rel="stylesheet" type="text/css">
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Web Application for PD patients, resarchers and physicans: Index</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="/styles/style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application for PD patients, resarchers and physicans: Index</title>
 
- </head>
- <body>
-    <div class="content">
-        <!-- Log out functionality could be implemented in the future -->
-        <a class="logoutButton" href="/">Sign out</a>
+</head>
+<body>
+   <div class="content">
+       <!-- Log out functionality could be implemented in the future -->
+       <a class="logoutButton" href="/">Sign out</a>
 
-        <div>
-            <h1>Web Application</h1>
-            
-            <!-- Show the role of the user using a global variable with the username -->
-            <span>Welcome <span id="Rolename"><%= global.userName[0].username %></span>!</span>
-            <br></br>
+       <div>
+           <h1>Web Application</h1>
+           
+           <!-- Show the role of the user using a global variable with the username -->
+           <span>Welcome <span id="Rolename"><%= global.userName[0].username %></span>!</span>
+           <br></br>
 
-            <!-- Show data from .csv-files in a table by clicking on a specific data -->
-            <div>
-                <h2>Data for your patients</h2>
-                <h3>Data and files</h3>
-                <p>Click on the buttons to view a table with specific data</p>
-                
-                <list>
-                    <button class="databutton" onclick="showTable('data1')">Data1</button>
-                    <button class="databutton" onclick="showTable('data2')">Data2</button>
-                    <button class="databutton" onclick="showTable('data3')">Data3</button>
-                    <button class="databutton" onclick="showTable('data4')">Data4</button>
-                    <button class="databutton" onclick="showTable('data5')">Data5</button>
-                    <button class="databutton" onclick="showTable('data6')">Data6</button>
-                </list>
-                <br></br>
+           <!-- Show data from .csv-files in a table by clicking on a specific data -->
+           <div id="data_field" style="display: none">
+               <h2>Data for your patients</h2>
+               <h3>Data and files</h3>
+               <p>Click on the buttons to view a table with specific data</p>
+               
+               <list>
+                   <button class="databutton" onclick="showTable('data1')">Data1</button>
+                   <button class="databutton" onclick="showTable('data2')">Data2</button>
+                   <button class="databutton" onclick="showTable('data3')">Data3</button>
+                   <button class="databutton" onclick="showTable('data4')">Data4</button>
+                   <button class="databutton" onclick="showTable('data5')">Data5</button>
+                   <button class="databutton" onclick="showTable('data6')">Data6</button>
+               </list>
+               <br></br>
 
-                <!-- Close the table (hidden when no data is selected) -->
-                <button class="databutton" id="closeTableButton" onclick="closeTable()">Close Table</button>
-                
-                <table class="data-table" id="data-table"></table>
-            </div>
-            
-            <!-- Link to RSS field for the researchers (Need to be fixed). -->
-            <br></br>
-            <div id="RSS_field">
-                <h2>RSS field</h2>
-                <p>View latest news regarding the PD research by clicking on the button below:</p>
-            
-                <a class="my_button" href="./RSSfeed">View RSS field</a>
-                
-            </div>
-        </div>
-    </div>
+               <!-- Close the table (hidden when no data is selected) -->
+               <button class="databutton" id="closeTableButton" onclick="closeTable()" style="display: none">Close Table</button>
+               
+               <table class="data-table" id="data-table"></table>
+               <br></br>
+           </div>
+           
+           <!-- Link to RSS field for the researchers -->
+           
+           <div id="RSS_field" style="display: none">
+               <h2>RSS field</h2>
+               <p>View latest news regarding the PD research by clicking on the button below:</p>
+           
+               <a class="my_button" href="https://www.news-medical.net/tag/feed/Parkinsons-Disease.aspx">View RSS field</a>
+               
+           </div>
 
-    <!-- Script that handles functionality -->
-    <script src="./scripts/index_script.js"></script>
- </body>
- </html>
+           <!-- Only shown to patients -->
+           <div id="patient_field" style="display: none">
+               <%-  include("videos.ejs")%>
+           </div>
+
+       </div>
+
+   </div>
+
+   <!-- Script that handles functionality -->
+   <script src="./scripts/index_script.js"></script>
+</body>
+</html>

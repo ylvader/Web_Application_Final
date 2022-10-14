@@ -39,29 +39,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set up routing for authentication with Google
+// Set up routing for authentication with Google, GitHub and FaceBook
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/github', passport.authenticate('github', { scope: ['profile', 'email'] }));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
-// If user logged in successfully, it will enter the '/videos'-page, otherwise it will redirect to the login page
-// Since only one patient has a google-account this is OK but this should be optimized in the future
+// If user logged in successfully, it will enter the '/index'-page, otherwise it will redirect to the login page
 app.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect: '/videos',
+    successRedirect: '/index',
     failureRedirect: '/'
 }));
 
-// Set up routing for authentication with GitHub
-app.get('/auth/github', passport.authenticate('github', { scope: ['profile', 'email'] }));
-
-// If user logged in successfully, it will enter the '/index'-page, otherwise it will redirect to the login page
 app.get('/auth/github/callback', passport.authenticate('github', {
   successRedirect: '/index', 
   failureRedirect: '/'
 }));
 
-// Set up routing for authentication with Facebook
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-// If user logged in successfully, it will enter the '/index'-page, otherwise it will redirect to the login page
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/index', 
   failureRedirect: '/'

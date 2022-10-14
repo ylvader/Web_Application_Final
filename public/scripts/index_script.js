@@ -1,14 +1,43 @@
-// index_script.js: Handles the page in index.ejs, which are shown to researchers and physicians
+// index_script.js: Handles the page in index.ejs
+
+// Variables to set different types of permissions
+// Patient: Permission = 1, Physician: Permission = 2, Researcher: Permission = 3
+let permission = 0;
 
 // The name of the role is set in the file index.ejs using a global variable "global.userID[0].username"
 // Therefore, the name of the role is checked here.
-// If it is a physician/doc, the RSS-field should not be visible
-if(document.getElementById("Rolename").innerHTML == "doc") {
-    document.getElementById("RSS_field").style.visibility = "hidden";
+// Set permissions based on role
+function setPermission() {
+    if(document.getElementById("Rolename").innerHTML == "patient1" || document.getElementById("Rolename").innerHTML == "patient2") {
+        permission = 1;
+    }
+    else if(document.getElementById("Rolename").innerHTML == "doc") {
+        permission = 2;
+    }
+    else if(document.getElementById("Rolename").innerHTML == "researcher") {
+        permission = 3;
+    }
+}
+
+// Set up which resources to be shown based on permissions
+function setResources() {
+    if (permission == 1) { // Patient
+        document.getElementById("patient_field").style.display = "block";
+    }
+    if (permission == 2) { // Doc
+        document.getElementById("data_field").style.display = "block";
+    }
+    else if (permission == 3) { // Researcher
+        document.getElementById("data_field").style.display = "block";
+
+        document.getElementById("RSS_field").style.display = "block";
+    }
+    else {
+
+    }
 }
 
 // ----- CSV-files -----
- 
 // Read and show CSV files in a table
 function showTable (csvfile) {
     // Get the table-element by ID
@@ -44,7 +73,7 @@ function showTable (csvfile) {
 });
 
     // Set the close-button of the table to visible
-    document.getElementById("closeTableButton").style.visibility = "visible";
+    document.getElementById("closeTableButton").style.display= "inline";
 }
 
 // Close the table. Called when clicking on the close-button
@@ -57,12 +86,16 @@ function closeTable() {
     table.innerHTML = "";
 
     // Set the close-button of the table to invisible since the table is empty
-    document.getElementById("closeTableButton").style.visibility = "hidden";
+    document.getElementById("closeTableButton").style.display = "none";
 }
 
 // This function is called in the beginning of loading the page
 window.onload = () => {
+   // Call function to set the permissions
+   setPermission();
 
-    // Set close-button to hidden since no table is open from the beginning
-   document.getElementById("closeTableButton").style.visibility = "hidden";
+   // Then set up which resources to be shown based on permissions
+   setResources();
+
+   console.log(userName[0].username);
 }
