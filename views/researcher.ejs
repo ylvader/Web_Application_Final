@@ -1,0 +1,59 @@
+<!-- Index page for patients: Content for researchers -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="/styles/style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application for PD patients, resarchers and physicans: Index</title>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+</head>
+<body>
+   <div class="content">
+       <!-- Log out functionality could be implemented in the future -->
+       <a class="logoutButton" href="/">Sign out</a>
+
+       <div>
+           <h1>Web Application</h1>
+           
+           <!-- Show the role of the user using a global variable with the username -->
+           <span>Welcome <span id="Rolename">researcher</span>!</span>
+           <br></br>
+
+           <!-- Menu to change between exercise data and videos -->
+           <div>
+            <a id="menu_button_data" onClick="changeActivePage('data')">Exercise data</a> <!-- Active from beginning text-decoration: underline rgb(27, 173, 98);; -->
+            <a id="menu_button_videos" onClick="changeActivePage('notes')">Notes</a>
+           </div>
+           
+           <!-- Data that are shown from the beginning or when the user presses the "Exercise data"-button -->
+           <div id="generated_data_field">
+
+            <%-  include("docs_researchers.ejs")%>
+
+          </div>
+
+           <!-- Notes that are shown when the researcher presses the "Notes"-button -->
+           <div id="notes_field" style="display: none">
+                <button>Add new note</button>
+
+                <ul>
+                    <li>Note</li>
+                    <li>Note</li>
+                    <li>Note</li>
+                  </ul>
+               
+           </div>
+
+       </div>
+
+   </div>
+
+   <!-- Script that handles functionality -->
+   <script type="module" src="./scripts/researcher.js"></script>
+</body>
+</html>

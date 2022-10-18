@@ -22,6 +22,8 @@ const loginRouter = require('./routes/login')
 const indexRouter = require('./routes/index')
 const videosRouter = require('./routes/videos')
 const rssfeedRouter = require('./routes/RSSfeed')
+const patientRouter = require('./routes/patient')
+const researcherRouter = require('./routes/researcher')
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs')
@@ -65,6 +67,8 @@ app.use('/', loginRouter); // Start page as login
 app.use('/index', indexRouter);
 app.use('/RSSfeed', rssfeedRouter);
 app.use('/videos', videosRouter);
+app.use('/patient', patientRouter);
+app.use('/researcher', researcherRouter);
 
 // Make the app listen to port 3000
 const PORT = process.env.PORT || 3000;

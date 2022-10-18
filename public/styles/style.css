@@ -6,7 +6,7 @@ body {
 }
 
 .content {
-  max-width: 600px;
+  max-width: 80%;
   margin: auto;
   background: white;
   padding: 10px;
@@ -134,6 +134,77 @@ button {
 
 .my_button:hover, .my_button:active {
   background-color: #668878;
+}
+
+.menu_button{
+  font-family: 'Helvetica';
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+}
+
+.menu_button:link, .menu_button:visited {
+  background-color: #353c44;
+  color: rgb(27, 173, 98);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+  text-decoration: underline rgb(27, 173, 98);
+}
+
+.menu_button:hover, .menu_button:active {
+  color: rgb(8, 71, 28);
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+  text-decoration: underline rgb(8, 71, 28);
+}
+
+#menu_button_videos{
+  font-family: 'Helvetica';
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-color: rgb(255, 255, 255);
+}
+
+#menu_button_data{
+  font-family: 'Helvetica';
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-color: rgb(27, 173, 98);
+}
+
+#menu_button_videos:link, #menu_button_videos:visited, #menu_button_data:link, #menu_button_data:visited {
+  background-color: #353c44;
+  color: rgb(27, 173, 98);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+  text-decoration: underline rgb(27, 173, 98);
+}
+
+#menu_button_videos:hover, #menu_button_videos:active, #menu_button_data:hover, #menu_button_data:active {
+  color: rgb(8, 71, 28);
+  padding: 0px 10px;
+  word-wrap: normal;
+  display: inline-block;
+  text-decoration: underline rgb(8, 71, 28);
 }
 
 /* Buttons: Google, Github and Facebook */

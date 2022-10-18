@@ -1,0 +1,65 @@
+<!-- Index page for patients: Content for patients -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="/styles/style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application for PD patients, resarchers and physicans: Index</title>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+</head>
+<body>
+   <div class="content">
+       <!-- Log out functionality could be implemented in the future -->
+       <a class="logoutButton" href="/">Sign out</a>
+
+       <div>
+           <h1>Web Application</h1>
+           
+           <!-- Show the role of the user using a global variable with the username -->
+           <span>Welcome <span id="Rolename">patient</span>!</span>
+           <br></br>
+
+           <!-- Menu to change between exercise data and videos -->
+           <div>
+            <a id="menu_button_data" onClick="changeActivePage('data')">Exercise data</a> <!-- Active from beginning text-decoration: underline rgb(27, 173, 98);; -->
+            <a id="menu_button_videos" onClick="changeActivePage('videos')">Exercise videos</a>
+           </div>
+           
+           <!-- Data that are shown from the beginning or when the patient presses the "Exercise data"-button -->
+           <div id="patients_data_field">
+
+            <button>Add new exercise</button>
+
+            <br></br>
+
+            <span>Number of exercises today: <span id="exercises_today">0</span></span>
+            <br></br>
+
+            <span>This week:</span>
+            <br></br>
+
+            <div id="patient_week_chart"></div>
+
+            <span>This month:</span>
+
+            <div id="patient_month_chart"></div>
+          </div>
+
+           <!-- Videos that are shown when the patient presses the "Exercise videos"-button -->
+           <div id="video_field" style="display: none">
+               <%-  include("videos.ejs")%>
+           </div>
+
+       </div>
+
+   </div>
+
+   <!-- Script that handles functionality -->
+   <script type="module" src="./scripts/patient.js"></script>
+</body>
+</html>
