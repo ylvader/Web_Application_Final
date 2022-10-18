@@ -1,6 +1,6 @@
 Web Application
 
-A web application created for course 4ME302 at Linnaeus University.
+A web application created for the final assignment in the course 4ME302 at Linnaeus University.
 
 Created with Node.js, Express.js and Passport.js
 
