@@ -17,6 +17,13 @@ const app = express()
 // Tell app to use the public directory for the static files, e.g. css/js/images/csv-files
 app.use(express.static(__dirname + '/public'));
 
+// Database
+//import { getUser, getPatientData, createPatientData, getNotes, createNote } from './databaseConfig.js'
+var db = require('./databaseConfig.js');
+var lall = db.getPatientData(console.log);
+
+
+
 // Import the routers into the server
 const loginRouter = require('./routes/login')
 const indexRouter = require('./routes/index')

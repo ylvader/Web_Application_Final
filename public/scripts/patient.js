@@ -1,4 +1,5 @@
 // patient.js: Script that handles the patient page
+//import { getUser } from '/.../databaseConfig.js'
 
 // changeActivePage: Changes the active page between "Exercise data" 
 // and "Exercise videos"

@@ -4,8 +4,13 @@ const router = express.Router()
 
 // Create routes: localhost:3000/videos will render videos.ejs
 router.get('/', (req, res, next) => {
-    res.render('patient')
+    doTheSqlCommand(  function(sqlResult) {myRender(res,sqlResult);});
 })
+myRender(res,sqlResult)
+{
+    
+    res.render()
+}
 
-// Export information from the file
+// Export() information from the file
 module.exports = router
