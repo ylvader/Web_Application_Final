@@ -22,6 +22,17 @@ body {
   border-radius: 5px;
 }
 
+.my_note {
+  max-width: 70%;
+  margin: auto;
+  background: rgb(241, 246, 246);
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 5px;
+}
+
 div {
   max-width: 500px;
   margin: auto;
@@ -64,6 +75,18 @@ p, span {
   margin-right:auto;
 }
 
+.note_data {
+  text-align: center;
+  font-family: 'Helvetica';
+  font-weight: bold;
+}
+
+.note_text {
+  text-align: center;
+  font-family: 'Helvetica';
+  font-style: italic;
+}
+
 /* Buttons */
 
 button {
@@ -74,10 +97,16 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  border-radius: 3px;
   font-size: 13px;
   margin: 4px 2px;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+/*
+button:active {
+  background-color: #386880;;
+}*/
 
 .databutton {
   border-radius: 15px;

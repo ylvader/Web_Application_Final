@@ -1,8 +1,27 @@
-<!-- Data field for researcher and docs -->
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js">
+</script>
+<script src="https://d3js.org/d3.v4.min.js">
+  </script> 
+    <body>
+        <div>
+            <span>Spiral exercise data for your patient</span>
+            <br></br>
+            <span>Choose exercise data:</span>
+            <br></br>
+
+            <button id="button_data1" onclick="createSpiralbylineRadial('data1')">Data 1 (Patient 1)</button> 
+            <button id="button_data3" onclick="createSpiralbylineRadial('data2')">Data 3 (Patient 1)</button> 
+            <button id="button_data5" onclick="createSpiralbylineRadial('data3')">Data 5 (Patient 2)</button>
 
             <br></br>
-            <span>Data field</span>
-            <br></br>
-
-   <!-- Script that handles functionality -->
-   <script type="module" src=""></script>
+            <svg id="spiral" width="200" height="300">
+                <g transform="translate(100, 100)"></g>
+            </svg>
+        </div>
+</body>
+<script src="./scripts/spiral.js"></script>
+</html>

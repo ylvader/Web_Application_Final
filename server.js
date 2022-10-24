@@ -41,6 +41,8 @@ const videosRouter = require('./routes/videos')
 const rssfeedRouter = require('./routes/RSSfeed')
 const patientRouter = require('./routes/patient')
 const researcherRouter = require('./routes/researcher')
+const docsresearcherRouter = require('./routes/docs_researchers')
+const docRouter = require('./routes/doc')
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs')
@@ -63,19 +65,20 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/github', passport.authenticate('github', { scope: ['profile', 'email'] }));
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-// If user logged in successfully, it will enter the '/index'-page, otherwise it will redirect to the login page
-app.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect: '/index',
+// @TODO: If user logged in successfully, it will enter the '/index'-page, otherwise it will redirect to the login page
+// (Right now to their own "pages")
+app.get('/auth/google/callback', passport.authenticate('google', { //(Patient2)
+    successRedirect: '/patient',
     failureRedirect: '/'
 }));
 
-app.get('/auth/github/callback', passport.authenticate('github', {
-  successRedirect: '/index', 
+app.get('/auth/github/callback', passport.authenticate('github', {//(Researcher)
+  successRedirect: '/researcher', 
   failureRedirect: '/'
 }));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/index', 
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {//(Doc)
+  successRedirect: '/doc', 
   failureRedirect: '/'
 }));
 
@@ -86,6 +89,8 @@ app.use('/RSSfeed', rssfeedRouter);
 app.use('/videos', videosRouter);
 app.use('/patient', patientRouter);
 app.use('/researcher', researcherRouter);
+app.use('/docs_researchers', docsresearcherRouter);
+app.use('/doc', docRouter);
 
 // Make the app listen to port 3000
 const PORT = process.env.PORT || 3000;

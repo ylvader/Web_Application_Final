@@ -1,4 +1,4 @@
-<!-- Index page for patients: Content for researchers -->
+<!-- Index page for researchers: Content for researchers -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,17 +35,28 @@
 
             <%-  include("docs_researchers.ejs")%>
 
+            <button onclick="addNewNote()" style="background-color: darkslategray;">Add data annotation to current data</button>
+            <p id="g"></p>
+
           </div>
 
            <!-- Notes that are shown when the researcher presses the "Notes"-button -->
            <div id="notes_field" style="display: none">
-                <button>Add new note</button>
+                <div class="my_note" id="one_note">
 
-                <ul>
-                    <li>Note</li>
-                    <li>Note</li>
-                    <li>Note</li>
-                  </ul>
+                    <p class="note_data">Data 1</p>
+                    <p class="note_text">Well this is interesting.</p>
+                    
+                </div>
+
+                <div class="my_note">
+
+                    <p class="note_data">Data 1</p>
+                    <p class="note_text">This seams a bit weird.</p>
+                    
+                </div>
+
+                
                
            </div>
 
@@ -55,5 +66,6 @@
 
    <!-- Script that handles functionality -->
    <script type="module" src="./scripts/researcher.js"></script>
+   <script src="./scripts/spiral.js"></script> 
 </body>
 </html>
