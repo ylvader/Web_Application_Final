@@ -28,19 +28,20 @@ module.exports = { getUser };
 
 // Get patient data (several functions for day/week/month/all?)
 // + id
+// Right now for patient1 (@TODO: Should be for patient2 later)
 // https://stackoverflow.com/questions/71300239/how-to-return-the-results-of-mysql-query-using-express-js
-
-//https://www.geeksforgeeks.org/how-to-run-synchronous-queries-using-sync-sql-module-in-node-js/
+// https://www.geeksforgeeks.org/how-to-run-synchronous-queries-using-sync-sql-module-in-node-js/
 async function getPatientData(func) {
+  const res = await mysql_con.query("SELECT dateTime FROM pd_db.therapy as therapy, pd_db.test as test Where therapy.therapyID = test.Therapy_IDtherapy and therapy.User_IDpatient = 3", (err,res,fields) => {func(res);});
+  console.log("hej");
+  return res;
 
-
-  
+  /*
   var dates = [];
   const res = await mysql_con.query("SELECT * FROM pd_db.therapy as therapy, pd_db.test as test Where therapy.therapyID = test.Therapy_IDtherapy and therapy.User_IDpatient = 3", (err,res,fields) => {func(res);});
   console.log("hej");
   return res;
-  //console.log(res[0]);
-  
+   */
 }
 
 module.exports = { getPatientData };

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Application for PD patients, resarchers and physicans: Index</title>
-
+    
     <script src="https://d3js.org/d3.v5.min.js"></script>
 
 </head>
@@ -33,7 +33,7 @@
            <!-- Data that are shown from the beginning or when the patient presses the "Exercise data"-button -->
            <div id="patients_data_field">
 
-            <button>Add new exercise</button>
+            <button onClick="addNewExercise()">Add new exercise</button>
 
             <br></br>
 
@@ -41,15 +41,15 @@
             <br></br>
 
             <span>This week:</span>
+            <div id="patient_week_chart"></div>
             <br></br>
 
-            <div id="patient_week_chart"></div>
-
+            <!-- @TODO: Get rid of space between span and svg-elements -->
             <span>This month:</span>
-
-            <div id="patient_month_chart"></div>
-          </div>
-
+            <svg id="linechart" width="600" height="450" style="vertical-align:top"></svg>
+          
+            <br></br><br></br><br></br>
+            </div>
            <!-- Videos that are shown when the patient presses the "Exercise videos"-button -->
            <div id="video_field" style="display: none">
                <%-  include("videos.ejs")%>
@@ -57,9 +57,24 @@
 
        </div>
 
+       <!-- Data: @TODO: Fix to send data to script-file... -->
+       <div id="data_field" style="display: none">
+        <div id="patient_data" style="display: none">
+            <%= patientData %>
+        </div>
+    </div>
+
    </div>
 
    <!-- Script that handles functionality -->
    <script type="module" src="./scripts/patient.js"></script>
+
+
+   
+  
+
+
+
+   
 </body>
 </html>

@@ -264,3 +264,10 @@ button {
   background-color: #898F9C;
   color: #ffffff;
 }
+
+/* Diagrams */
+path {
+  fill: none;
+  stroke:black;
+  stroke-width:1px;
+}

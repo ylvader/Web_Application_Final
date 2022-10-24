@@ -20,10 +20,20 @@ app.use(express.static(__dirname + '/public'));
 // Database
 //import { getUser, getPatientData, createPatientData, getNotes, createNote } from './databaseConfig.js'
 var db = require('./databaseConfig.js');
-var lall = db.getPatientData(console.log);
+var patient_data_dateTime = db.getPatientData(console.log);
 
+// Send patient data (@TODO: Does not work properly)
+app.get('/patient', async (req, res) => {
+  const patientData = patient_data_dateTime;
+  res.render('patient', { patientData: patientData })
+})
 
-
+/*
+app.get('/scripts/patient.js', function(req, res) {
+  res.set('Content-Type', 'application/javascript');
+  res.render('patient', { myVar : "prutt" });
+});
+*/
 // Import the routers into the server
 const loginRouter = require('./routes/login')
 const indexRouter = require('./routes/index')
