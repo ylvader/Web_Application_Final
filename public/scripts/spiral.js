@@ -28,6 +28,7 @@ function createSpiralbylineRadial(file) {
             {angle: 3.14 * 3.25, radius: 105},
             {angle: 3.14 * 3.5, radius: 110}
             ];
+            currentdatafile = "Data 1";
             
             // Indicate which data that is shown by changing the colors of the buttons
             document.getElementById("button_data1").style.backgroundColor = "#386880";
