@@ -1,14 +1,10 @@
 // researcher.js: Script that handles the researchers page
 
-// changeActivePage: Changes the active page between "Exercise data" 
-// and "Notes". "Exercise data" is default from beginning
-
-// if using js6 modules your html events attributes won't work. 
-// in that case you must bring your function from global scope to module scope.
-// https://stackoverflow.com/questions/17378199/uncaught-referenceerror-function-is-not-defined-with-onclick
 window.changeActivePage = changeActivePage;
 window.addNewNote = addNewNote;
 
+// changeActivePage: Changes the active page between "Exercise data" 
+// and "Notes". "Exercise data" is default from beginning
 function changeActivePage(buttonClicked) {
     console.log(buttonClicked)
 
@@ -32,12 +28,9 @@ function changeActivePage(buttonClicked) {
     }
 };
 
-
-// currentdatafile is from spiral.js to know which script is active
 // Add a new note
 function addNewNote() {
-    console.log("addnew")
-    console.log(currentdatafile);
+    console.log(currentdatafile); // currentdatafile is from spiral.js to know which script is active
 
     // If "currentdatafile" is empty, then no file is chosen
     if (currentdatafile === "") {
@@ -60,8 +53,10 @@ function renderNewNote(note) {
 
     // Create a new div-element
     var note_div = document.createElement('div');
+
     // Set class
     note_div.className = 'my_note'; 
+    
     // Set it before the first div right now
     one_note.before(note_div);
 

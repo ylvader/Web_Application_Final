@@ -1,4 +1,5 @@
 // index_script.js: Handles the page in index.ejs
+// Currently not used
 
 // Variables to set different types of permissions
 // Patient: Permission = 1, Physician: Permission = 2, Researcher: Permission = 3

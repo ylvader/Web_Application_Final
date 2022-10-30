@@ -1,16 +1,16 @@
-// Inspo: https://stackoverflow.com/questions/65081459/creating-a-spiral-in-d3
+// spiral.js: Handles the spiral with patient data that are shown to researchers and physicians
 
 var currentdatafile = "";
 
-// In case I can not make it work with the csv files this function
-// can be used to show how to visualize data
-// From: https://www.geeksforgeeks.org/d3-js-lineradial-curve-method/
+// This function creates the spiral
+// Inspiration from: https://www.geeksforgeeks.org/d3-js-lineradial-curve-method/
 function createSpiralbylineRadial(file) {
     d3.select('#spiral').selectAll('path').remove();
 
     var lineRadialGenerator = d3.lineRadial();
 
     // Define the data based on csv-file chosen
+    // This should be real patient data from the database in the future
     if(file === "data1") {
         var data = [
             {angle: 0, radius: 10},
@@ -28,8 +28,8 @@ function createSpiralbylineRadial(file) {
             {angle: 3.14 * 3.25, radius: 105},
             {angle: 3.14 * 3.5, radius: 110}
             ];
-            currentdatafile = "Data 1";
-            console.log("hej")
+            
+            // Indicate which data that is shown by changing the colors of the buttons
             document.getElementById("button_data1").style.backgroundColor = "#386880";
             document.getElementById("button_data3").style.backgroundColor = "#4c8eaf";
             document.getElementById("button_data5").style.backgroundColor = "#4c8eaf";
@@ -53,10 +53,10 @@ function createSpiralbylineRadial(file) {
             ];
             currentdatafile = "Data 3";
             
+            // Indicate which data that is shown by changing the colors of the buttons
             document.getElementById("button_data3").style.backgroundColor = "#386880";
             document.getElementById("button_data1").style.backgroundColor = "#4c8eaf";
             document.getElementById("button_data5").style.backgroundColor = "#4c8eaf";
-            
     }
     else if (file === "data3") { //data5
         var data = [
@@ -77,11 +77,13 @@ function createSpiralbylineRadial(file) {
             ];
             currentdatafile = "Data 5";
 
+            // Indicate which data that is shown by changing the colors of the buttons
             document.getElementById("button_data5").style.backgroundColor = "#386880";
             document.getElementById("button_data1").style.backgroundColor = "#4c8eaf";
             document.getElementById("button_data3").style.backgroundColor = "#4c8eaf";
 
     }
+    // Create the spiral using d3's function "lineRadial"
     var lineRadialGenerator = d3.lineRadial()
        .angle((d) => d.angle)
        .radius((d) => d.radius)

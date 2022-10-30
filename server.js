@@ -18,22 +18,14 @@ const app = express()
 app.use(express.static(__dirname + '/public'));
 
 // Database
-//import { getUser, getPatientData, createPatientData, getNotes, createNote } from './databaseConfig.js'
 var db = require('./databaseConfig.js');
 var patient_data_dateTime = db.getPatientData(console.log);
 
-// Send patient data (@TODO: Does not work properly)
+// Here patient data should be sent but right now "patient_data_dateTime" is a "Promise"
 app.get('/patient', async (req, res) => {
-  const patientData = patient_data_dateTime;
-  res.render('patient', { patientData: patientData })
+  res.render('patient', { patientData: patient_data_dateTime })
 })
 
-/*
-app.get('/scripts/patient.js', function(req, res) {
-  res.set('Content-Type', 'application/javascript');
-  res.render('patient', { myVar : "prutt" });
-});
-*/
 // Import the routers into the server
 const loginRouter = require('./routes/login')
 const indexRouter = require('./routes/index')
@@ -42,7 +34,7 @@ const rssfeedRouter = require('./routes/RSSfeed')
 const patientRouter = require('./routes/patient')
 const researcherRouter = require('./routes/researcher')
 const docsresearcherRouter = require('./routes/docs_researchers')
-const docRouter = require('./routes/doc')
+const docRouter = require('./routes/doc');
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs')

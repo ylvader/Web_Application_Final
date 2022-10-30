@@ -7,8 +7,6 @@ const GitHubStrategy = require('passport-github2').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 var mysql = require('mysql');
 
-//import { getUser } from './databaseConfig.js'
-
 // Connect to the database
 var mysql_con = mysql.createConnection({
   host: "localhost",

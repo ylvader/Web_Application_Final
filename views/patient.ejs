@@ -1,4 +1,4 @@
-<!-- Index page for patients: Content for patients -->
+<!-- Index page for patients -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,12 +21,12 @@
            <h1>Web Application</h1>
            
            <!-- Show the role of the user using a global variable with the username -->
-           <span>Welcome <span id="Rolename">patient</span>!</span>
+           <span>Welcome <span id="Rolename">patient2</span>!</span>
            <br></br>
 
            <!-- Menu to change between exercise data and videos -->
            <div>
-            <a id="menu_button_data" onClick="changeActivePage('data')">Exercise data</a> <!-- Active from beginning text-decoration: underline rgb(27, 173, 98);; -->
+            <a id="menu_button_data" onClick="changeActivePage('data')">Exercise data</a> <!-- Active from beginning -->
             <a id="menu_button_videos" onClick="changeActivePage('videos')">Exercise videos</a>
            </div>
            
@@ -50,6 +50,7 @@
           
             <br></br><br></br><br></br>
             </div>
+            
            <!-- Videos that are shown when the patient presses the "Exercise videos"-button -->
            <div id="video_field" style="display: none">
                <%-  include("videos.ejs")%>
@@ -57,17 +58,11 @@
 
        </div>
 
-       <!-- Data: @TODO: Fix to send data to script-file... -->
-       <div id="data_field" style="display: none">
-        <div id="patient_data" style="display: none">
-            <%= patientData %>
-        </div>
-    </div>
-
    </div>
 
    <!-- Script that handles functionality -->
    <script type="module" src="./scripts/patient.js"></script>
+   
 
 
    

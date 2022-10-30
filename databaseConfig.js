@@ -1,3 +1,6 @@
+// databaseConfig.js: Handles various database requests
+// Should be used in the future
+
 var mysql = require('mysql');
 require('dotenv').config();
 
@@ -9,42 +12,29 @@ var mysql_con = mysql.createConnection({
   database: process.env.database
 });
 
+/*
 mysql_con.connect(function(err) {
     if (err) throw err;
     console.log("Connected to the database in databaseConfig");
   });
+*/
 
-// Get user (Send ClientID from passportConfig?)
+// Get user
 function getUser(client_ID) {
-  const [user] = mysql_con.query(`
+  const user = mysql_con.query(`
   SELECT username 
   FROM user
   WHERE clientID = ?
   `, [client_ID]);
-  return user[0]
+  return user;
 }
 
-module.exports = { getUser };
-
-// Get patient data (several functions for day/week/month/all?)
-// + id
-// Right now for patient1 (@TODO: Should be for patient2 later)
-// https://stackoverflow.com/questions/71300239/how-to-return-the-results-of-mysql-query-using-express-js
-// https://www.geeksforgeeks.org/how-to-run-synchronous-queries-using-sync-sql-module-in-node-js/
+// Get patient data
 async function getPatientData(func) {
   const res = await mysql_con.query("SELECT dateTime FROM pd_db.therapy as therapy, pd_db.test as test Where therapy.therapyID = test.Therapy_IDtherapy and therapy.User_IDpatient = 3", (err,res,fields) => {func(res);});
-  console.log("hej");
+  console.log("getPatientData");
   return res;
-
-  /*
-  var dates = [];
-  const res = await mysql_con.query("SELECT * FROM pd_db.therapy as therapy, pd_db.test as test Where therapy.therapyID = test.Therapy_IDtherapy and therapy.User_IDpatient = 3", (err,res,fields) => {func(res);});
-  console.log("hej");
-  return res;
-   */
 }
-
-module.exports = { getPatientData };
 
 // Create patient data
 async function createPatientData(testID, dateTime, Therapy_IDtherapy) {
@@ -53,7 +43,6 @@ async function createPatientData(testID, dateTime, Therapy_IDtherapy) {
 }
 
 // Get notes (data annotation (for the researcher))
-// noteID, Test_Session_IDtest_session, note, User_IDmed 
 async function getNotes(userID) {
   const [notes] = await mysql_con.query(`
   SELECT * 
@@ -69,46 +58,14 @@ async function createNote(noteID, Test_Session_IDtest_session, note, User_IDmed)
   INSERT INTO notes (noteID, Test_Session_IDtest_session, note, User_IDmed)
   VALUES (?, ?, ?, ?)
   `, [noteID, Test_Session_IDtest_session, note, User_IDmed]);
-  const id = newNote.User_IDmed; //not needed?
+  const id = newNote.User_IDmed;
   return getNotes(User_IDmed)
 }
 
-/*
-mysql_con.query("SELECT username FROM user WHERE clientID = ?", [profile.id], (err, user) => {
-  if(err) {
-      console.log("Error in finding user with Google-account")
-      return done(err);
-  }
-  else if(user) { // User exists
-      console.log("Google user exists");
-      // Set the username that is retrieved from the database
-      global.userName = user;
-      return done(null, user); 
-  }
-  else { // Redirect user
-      // User don't have a Google account
-      return done(null);
-  }
-})
-*/
-
-// Annan lösning
-/*
-config = {
-        host: "localhost",
-        user: process.env.user,
-        password: process.env.password,
-        database: process.env.database
-    }
-
-var connection = mysql.createConnection(config); //added the line
-  connection.connect(function(err){
-    if (err){
-      console.log('Error connecting to database');
-    }
-      console.log('connected successfully to DB.');
-  });
-    
-    module.exports ={
-         connection : mysql.createConnection(config) 
-    }*/
+// Export the functions
+module.exports = { getPatientData,
+  getUser,
+  createPatientData,
+  getNotes, 
+  createNote
+ };
